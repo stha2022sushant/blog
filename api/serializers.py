@@ -4,8 +4,9 @@ from blogApplication.models import BlogApp
 class BlogAppSerializer(serializers.ModelSerializer):
     class Meta:
         model = BlogApp
-        fields = '__all__'
-        # Alternatively, we can specify specific fields:
-        # fields = ['id', 'title', 'content', 'created_at']
+        # you can use fields to '__all__' if you want everything from field
+        #fields = '__all__'
+        fields = ['id', 'title', 'blog', 'created_date', 'updated_date']
+        
 
 

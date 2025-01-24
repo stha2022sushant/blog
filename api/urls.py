@@ -1,4 +1,4 @@
-from django.urls import path 
+from django.urls import path
 from . import views
 
 
@@ -10,4 +10,4 @@ urlpatterns = [
     path('update/<str:pk>/', views.updateBlogs),
     path('delete/<str:pk>/', views.deleteBlogs),
     
-]
+    ]

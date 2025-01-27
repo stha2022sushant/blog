@@ -1,3 +1,4 @@
+'''
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
@@ -42,3 +43,18 @@ def deleteBlogs(request, pk):
     blogs = BlogApp.objects.get(id=pk)
     blogs.delete()
     return Response('Blog Successfully Deleted !')
+
+'''
+
+from rest_framework.viewsets import ModelViewSet
+from blogApplication.models import BlogApp
+from .serializers import BlogAppSerializer
+
+
+class BlogAppViewSet(ModelViewSet):
+    """
+    A viewset for viewing, creating, updating, and deleting blog instances.
+    """
+    queryset = BlogApp.objects.all()
+    serializer_class = BlogAppSerializer
+

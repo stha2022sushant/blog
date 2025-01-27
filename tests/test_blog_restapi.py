@@ -13,14 +13,14 @@ class BlogIntegrationTestCase(TestCase):
             blog="Initial blog content."
         )
 
-    def test_create_blog(self):  
+    def test_create_blog(self):
         """Integration test for creating a blog post"""
         payload = {
             "title": "Integration Test Blog",
             "blog": "This is an integration test blog content."
         }
         # payload = BlogFactory()
-        response = self.client.post("/add/", payload, format="json")
+        response = self.client.post("/blogs/", payload, format="json")
         self.assertEqual(response.status_code, 201)
         self.assertEqual(BlogApp.objects.count(), 2)
         created_blog = BlogApp.objects.latest("id")
@@ -36,7 +36,7 @@ class BlogIntegrationTestCase(TestCase):
             "title": new_data.title,
             "blog": new_data.blog,
         }
-        response = self.client.post(f"/update/{self.blog.id}/",
+        response = self.client.put(f"/blogs/{self.blog.id}/",
                                     payload, format="json")
         self.assertEqual(response.status_code, 200)
 
@@ -47,7 +47,7 @@ class BlogIntegrationTestCase(TestCase):
 
     def test_delete_blog(self):
         """Integration test for deleting a blog post"""
-        response = self.client.delete(f"/delete/{self.blog.id}/")
+        response = self.client.delete(f"/blogs/{self.blog.id}/")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(BlogApp.objects.count(), 0)
         self.assertFalse(BlogApp.objects.filter(id=self.blog.id).exists())

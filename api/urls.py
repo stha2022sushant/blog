@@ -11,9 +11,9 @@ urlpatterns = [
     path('update/<str:pk>/', views.updateBlogs),
     path('delete/<str:pk>/', views.deleteBlogs),
 ]
+
+
 '''
-
-
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import BlogAppViewSet

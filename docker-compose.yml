@@ -18,10 +18,8 @@ services:
     restart: always  # This must be changed 
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_USER=blogApplication
-      - POSTGRES_PASSWORD=blogApplication
-      - POSTGRES_DB=blogApplication # env variable
+    env_file:
+      - .env.dev
     ports:
       - "5432:5432"  # Expose PostgreSQL port (optional)
   

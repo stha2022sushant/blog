@@ -1,8 +1,9 @@
-from typing import Optional
+# from typing import Optional
 from strawberry import auto
 import strawberry_django
 from django.db.models import Q
 from . import models
+
 
 @strawberry_django.filters.filter(models.BlogApp, lookups=True)
 class BlogAppFilter:

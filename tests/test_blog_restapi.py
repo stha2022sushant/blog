@@ -13,15 +13,13 @@ class BlogIntegrationTestCase(TestCase):
             blog="Initial blog content."
         )
 
-    def test_create_blog(self):
-        
+    def test_create_blog(self):  
         """Integration test for creating a blog post"""
         payload = {
             "title": "Integration Test Blog",
             "blog": "This is an integration test blog content."
         }
-        
-        #payload = BlogFactory()
+        # payload = BlogFactory()
         response = self.client.post("/add/", payload, format="json")
         self.assertEqual(response.status_code, 201)
         self.assertEqual(BlogApp.objects.count(), 2)
@@ -32,12 +30,14 @@ class BlogIntegrationTestCase(TestCase):
     def test_update_blog(self):
         """Integration test for updating a blog post using BlogFactory"""
         # Generate new dynamic data for update
-        new_data = BlogFactory.build()  # Builds a BlogFactory instance without saving it
+        new_data = BlogFactory.build()
+        # Builds a BlogFactory instance without saving it
         payload = {
             "title": new_data.title,
             "blog": new_data.blog,
         }
-        response = self.client.post(f"/update/{self.blog.id}/", payload, format="json")
+        response = self.client.post(f"/update/{self.blog.id}/",
+                                    payload, format="json")
         self.assertEqual(response.status_code, 200)
 
         # Verify the blog is updated in the database

@@ -9,7 +9,7 @@ on:
 jobs:
   check:
     name: Flake8 check
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # Runs on ubuntu latest
     steps:
       - uses: actions/checkout@v2
 

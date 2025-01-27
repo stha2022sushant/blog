@@ -9,5 +9,4 @@ urlpatterns = [
     path('add/', views.addBlogs),
     path('update/<str:pk>/', views.updateBlogs),
     path('delete/<str:pk>/', views.deleteBlogs),
-    
-    ]
+]

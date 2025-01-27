@@ -1,5 +1,7 @@
 from django.db import models
 from django.conf import settings
+
+
 class BlogApp(models.Model):
     title = models.CharField(max_length=255)
     blog = models.TextField()

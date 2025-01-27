@@ -6,6 +6,7 @@ from random import choice
 
 fake = Faker()
 
+
 class UserFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = get_user_model()
@@ -14,7 +15,6 @@ class UserFactory(factory.django.DjangoModelFactory):
     email = factory.Faker('email')
     password = factory.PostGenerationMethodCall('set_password', 'password123')
 
-    
 
 class BlogFactory(factory.django.DjangoModelFactory):
     class Meta:
@@ -22,7 +22,6 @@ class BlogFactory(factory.django.DjangoModelFactory):
 
     title = factory.Faker('sentence', nb_words=4)  # Random title
     blog = factory.Faker('paragraph', nb_sentences=5)  # Random content
-    
-    # Use 'author' as either a random User or None (to simulate optional author)
-    author = factory.LazyAttribute(lambda _: choice([None, UserFactory()]))  # Randomly choose None or a user
-
+    # Use 'author' as either a random User or None
+    # (to simulate optional author)
+    author = factory.LazyAttribute(lambda _: choice([None, UserFactory()]))

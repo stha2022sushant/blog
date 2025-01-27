@@ -5,6 +5,7 @@ from .filters import BlogAppFilter
 from .orders import BlogAppOrder
 from . import models
 
+
 @strawberry_django.type(
     models.BlogApp,
     filters=BlogAppFilter,

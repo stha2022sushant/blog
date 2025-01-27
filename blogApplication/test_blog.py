@@ -33,9 +33,7 @@ class TestBlogMutation(TestCase):
           }
         }
         '''
-
     def test_create_blog(self):
-        
         variables = {
             'title': "Test Blog Title",
             'blog': "This is the content of the test blog."
@@ -43,7 +41,8 @@ class TestBlogMutation(TestCase):
 
         response = self.client.post(
             '/graphql',
-            json.dumps({'query': self.create_blog_mutation, 'variables': variables}),
+            json.dumps({'query': self.create_blog_mutation,
+            'variables': variables}),
             content_type='application/json'
         )
 
@@ -53,7 +52,8 @@ class TestBlogMutation(TestCase):
         print(response_data)
         print("#############################")
 
-        self.assertNotIn('errors', response_data, f"Errors occurred: {response_data.get('errors')}")
+        self.assertNotIn('errors', response_data,
+        f"Errors occurred: {response_data.get('errors')}")
         self.assertIn('data', response_data)
         self.assertIn('createBlog', response_data['data'])
 
@@ -73,7 +73,8 @@ class TestBlogMutation(TestCase):
 
         update_response = self.client.post(
             '/graphql',
-            json.dumps({'query': self.update_blog_mutation, 'variables': variables}),
+            json.dumps({'query': self.update_blog_mutation,
+              'variables': variables}),
             content_type='application/json'
         )
 
@@ -83,7 +84,8 @@ class TestBlogMutation(TestCase):
         print(updated_response_data)
         print("#############################")
 
-        self.assertNotIn('errors', updated_response_data, f"Errors occurred: {updated_response_data.get('errors')}")
+        self.assertNotIn('errors', updated_response_data,
+        f"Errors occurred: {updated_response_data.get('errors')}")
         self.assertIn('data', updated_response_data)
         self.assertIn('updateBlog', updated_response_data['data'])
 
@@ -93,15 +95,14 @@ class TestBlogMutation(TestCase):
         self.assertEqual(updated_blog['blog'], variables['blog'])
 
         print(f"Updated Blog: {updated_blog}")
-        
-    
         variables = {
             'id': created_blog_id  # Pass the created blog ID
         }
 
         response = self.client.post(
             '/graphql',
-            json.dumps({'query': self.delete_blog_mutation, 'variables': variables}),
+            json.dumps({'query': self.delete_blog_mutation,
+              'variables': variables}),
             content_type='application/json'
         )
 
@@ -112,7 +113,8 @@ class TestBlogMutation(TestCase):
         print("#############################")
 
         # Check if the response does not contain errors
-        self.assertNotIn('errors', response_data, f"Errors occurred: {response_data.get('errors')}")
+        self.assertNotIn('errors', response_data,
+        f"Errors occurred: {response_data.get('errors')}")
 
         # Ensure the data and deleteBlog fields are present
         self.assertIn('data', response_data)
@@ -121,12 +123,9 @@ class TestBlogMutation(TestCase):
         # Verify success and message in the deleteBlog response
         delete_response = response_data['data']['deleteBlog']
         self.assertTrue(delete_response['success'])
-        self.assertEqual(delete_response['message'], 'Blog deleted successfully.')
+        self.assertEqual(delete_response['message'],
+        'Blog deleted successfully.')
 
         print(f"Delete Response: {delete_response}")
 
         """
-
-    
-
-        

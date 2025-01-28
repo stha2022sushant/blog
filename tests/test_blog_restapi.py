@@ -36,8 +36,7 @@ class BlogIntegrationTestCase(TestCase):
             "title": new_data.title,
             "blog": new_data.blog,
         }
-        response = self.client.put(f"/blogs/{self.blog.id}/",
-                                    payload, format="json")
+        response = self.client.put(f"/blogs/{self.blog.id}/", payload, format="json")
         self.assertEqual(response.status_code, 200)
 
         # Verify the blog is updated in the database

@@ -27,3 +27,8 @@ flake8 = "^7.1.1"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.flake8]
+ignore = ["E127", "E501"]
+max-line-length = 88
+exclude = [".git", "__pycache__", "venv"]

@@ -47,11 +47,6 @@ class TestBlogMutation(TestCase):
         )
 
         response_data = json.loads(response.content)
-
-        print("#############################")
-        print(response_data)
-        print("#############################")
-
         self.assertNotIn('errors', response_data,
         f"Errors occurred: {response_data.get('errors')}")
         self.assertIn('data', response_data)
@@ -80,10 +75,6 @@ class TestBlogMutation(TestCase):
 
         updated_response_data = json.loads(update_response.content)
 
-        print("#############################")
-        print(updated_response_data)
-        print("#############################")
-
         self.assertNotIn('errors', updated_response_data,
         f"Errors occurred: {updated_response_data.get('errors')}")
         self.assertIn('data', updated_response_data)
@@ -107,10 +98,6 @@ class TestBlogMutation(TestCase):
         )
 
         response_data = json.loads(response.content)
-
-        print("#############################")
-        print(response_data)
-        print("#############################")
 
         # Check if the response does not contain errors
         self.assertNotIn('errors', response_data,

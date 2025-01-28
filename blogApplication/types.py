@@ -44,4 +44,6 @@ class UserInput:
 
 @strawberry_django.input(models.BlogApp, partial=True)
 class BlogAppPartialInput(BlogAppInput):
-    pass
+    id: int  # Required field to identify which blog to update
+    title: str | None = None  # Optional field for the blog title
+    blog: str | None = None
